@@ -1,0 +1,87 @@
+@font-face {
+    font-family: "Antic Slab";
+    src: url("https://fonts.googleapis.com/css?family=Antic+Slab");
+}
+
+#snakeboard {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h2{
+    text-align: center;
+    margin: auto;
+}
+
+nav a{
+    text-decoration:none;
+    color:inherit;
+    font-size:16px;
+}
+          
+nav li, .select-css{
+    display:inline-block;
+    width:150px;
+    height:30px;
+    padding:5px 10px;
+    background-color:#000;
+    border:1px solid #000;
+    text-align:center;
+    color:#fff;
+    position:relative;
+}
+          
+nav li:hover{
+    background-color:#fff;
+    color:#000;
+}
+          
+nav li>ul{
+    display:none;
+}
+
+nav li:hover>ul{
+    display:block;
+    position:absolute;
+    top:40px;
+    left:-41px;
+}
+
+h1{
+    text-align:center;
+    font-family: "Antic Slab";
+    font-size:xx-large;
+}
+
+hr.new1 {
+    border: 4px solid black;
+    border-radius: 5px;
+}
+
+body {
+    background: -webkit-linear-gradient(90deg, #65997d 10%, #319c63 90%);
+    background:    -moz-linear-gradient(90deg, #65997d 10%, #319c63 90%);
+    background:     -ms-linear-gradient(90deg, #65997d 10%, #319c63 90%);
+    background:      -o-linear-gradient(90deg, #65997d 10%, #319c63 90%);
+    background:         linear-gradient(90deg, #65997d 10%, #319c63 90%);
+}
+
+.glow:hover{
+    color: #fff;
+    text-align: center;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+  
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #8AE78A, 0 0 40px #8AE78A, 0 0 50px #8AE78A;
+    }
+   
+    to {
+        text-shadow: 0 0 20px #fff, 0 0 30px #6DE86D, 0 0 40px #6DE86D, 0 0 50px #6DE86D, 0 0 60px #6DE86D;
+    }
+}
