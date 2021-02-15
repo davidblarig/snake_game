@@ -8,7 +8,7 @@
         <script type="text/javascript" src="{!! asset('js/api.js') !!}" async></script>
     </head>
     <body>
-        <!--prueba1-->
+        <!--prueba2-->
         <h1 class="glow">{{$title}}</h1>
 
         <nav><ul>
