@@ -2,7 +2,9 @@ const board_border = 'black';
 const board_background = "white";
 const snake_col = 'lightblue';
 const snake_border = 'darkblue';
-    
+
+var totalTime = 120;    
+
 let snake = [
     {x: 200, y: 200},
     {x: 190, y: 200},
@@ -21,7 +23,8 @@ let dx = 10;
 // Velocidad vertical
 let dy = 0;
     
-    
+var velocidad;
+
 // Obtener el elemento del canvas
 const snakeboard = document.getElementById("snakeboard");
 // Devuelve un contexto de dibujo bidimensional
@@ -35,11 +38,26 @@ document.addEventListener("keydown", change_direction);
     
 // función main llamada repetidamente para mantener el juego en marcha
 function main() {
+    if(document.getElementById('modo').value == "val2") {
+        updateClock();
+    }
+    if(document.getElementById('dificultad').value == "fac") {
+        velocidad = 200;
+    }else if(document.getElementById('dificultad').value == "nor") {
+        velocidad = 100;
+    }else if(document.getElementById('dificultad').value == "dif") {
+        velocidad = 50;
+    }
+    game();
+}
+
+function game() {
     if (has_game_ended()){
         var mensaje = alert("Fin del juego\nHas conseguido " + score + " puntos");
         location.reload();
         return mensaje;
     } 
+    
     changing_direction = false;
     setTimeout(function onTick() {
         clear_board();
@@ -47,8 +65,8 @@ function main() {
         move_snake();
         drawSnake();
         // Repetir
-        main();
-    }, 100)
+        game();
+    }, velocidad)
 }
     
 // dibujar un borde alrededor del canvas
@@ -93,6 +111,7 @@ function has_game_ended() {
     for (let i = 4; i < snake.length; i++) {
         if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) return true
     }
+    if(totalTime==0) return true;
     const hitLeftWall = snake[0].x < 0;
     const hitRightWall = snake[0].x > snakeboard.width - 10;
     const hitToptWall = snake[0].y < 0;
@@ -168,3 +187,18 @@ function move_snake() {
         snake.pop();
     }
 }
+
+function updateClock() {
+    var min = parseInt(totalTime/60);
+    var seg = parseInt(totalTime%60);
+    if(seg<10){
+        document.getElementById('countdown').innerHTML = "Tiempo " + min + ":0" + seg;
+    }else{
+        document.getElementById('countdown').innerHTML = "Tiempo " + min + ":" + seg;
+    }
+    if(totalTime>0){
+        totalTime-=1;
+        setTimeout(updateClock, 1000);
+    }
+}
+
