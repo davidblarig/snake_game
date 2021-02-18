@@ -10,9 +10,13 @@
     transform: translate(-50%, -50%);
 }
 
-h2{
+.info{
     text-align: center;
-    margin: auto;
+    font-size: x-large;
+    font-weight: bold;
+    margin: 20px;
+    display:flex;
+    justify-content: center;
 }
 
 nav a{
@@ -26,7 +30,7 @@ nav li, .select-css{
     width:150px;
     height:30px;
     padding:5px 10px;
-    background-color:#000;
+    background-color:rgba(6, 71, 3, 0.781);
     border:1px solid #000;
     text-align:center;
     color:#fff;

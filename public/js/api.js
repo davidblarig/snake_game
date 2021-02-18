@@ -14,6 +14,7 @@ let snake = [
 ]
 
 let score = 0;
+let points = 0;
 // True si se cambia de dirección
 let changing_direction = false;
 // Velocidad horizontal
@@ -36,21 +37,14 @@ gen_food();
 clear_board();
 document.addEventListener("keydown", change_direction);
     
-// función main llamada repetidamente para mantener el juego en marcha
 function main() {
-    if(document.getElementById('modo').value == "val2") {
-        updateClock();
-    }
-    if(document.getElementById('dificultad').value == "fac") {
-        velocidad = 200;
-    }else if(document.getElementById('dificultad').value == "nor") {
-        velocidad = 100;
-    }else if(document.getElementById('dificultad').value == "dif") {
-        velocidad = 50;
-    }
+    difficulty();
+    mode();
+    thematic();
     game();
 }
 
+// función game llamada repetidamente para mantener el juego en marcha
 function game() {
     if (has_game_ended()){
         var mensaje = alert("Fin del juego\nHas conseguido " + score + " puntos");
@@ -67,6 +61,31 @@ function game() {
         // Repetir
         game();
     }, velocidad)
+}
+
+function mode() {
+    if(document.getElementById('modo').value == "val2") {
+        updateClock();
+    }
+}
+
+function difficulty() {
+    if(document.getElementById('dificultad').value == "fac") {
+        velocidad = 200;
+        points = 50;
+    }else if(document.getElementById('dificultad').value == "nor") {
+        velocidad = 100;
+        points = 25;
+    }else if(document.getElementById('dificultad').value == "dif") {
+        velocidad = 50;
+        points = 10;
+    }
+}
+
+function thematic() {
+    if(document.getElementById('desierto').selected == true){
+        alert("Has cambiado de tematica");
+    }
 }
     
 // dibujar un borde alrededor del canvas
@@ -177,9 +196,9 @@ function move_snake() {
     const has_eaten_food = snake[0].x === food_x && snake[0].y === food_y;
     if (has_eaten_food) {
         // Aumenta la puntuación
-        score += 10;
+        score += points;
         // Muestra la puntuación en la pantalla
-        document.getElementById('score').innerHTML = score;
+        document.getElementById('score').innerHTML = "Puntuación: " + score;
         // Genera una nueva ubicación de la comida
         gen_food();
     } else {
@@ -192,9 +211,9 @@ function updateClock() {
     var min = parseInt(totalTime/60);
     var seg = parseInt(totalTime%60);
     if(seg<10){
-        document.getElementById('countdown').innerHTML = "Tiempo " + min + ":0" + seg;
+        document.getElementById('countdown').innerHTML = "&emsp;&emsp;Tiempo " + min + ":0" + seg;
     }else{
-        document.getElementById('countdown').innerHTML = "Tiempo " + min + ":" + seg;
+        document.getElementById('countdown').innerHTML = "&emsp;&emsp;Tiempo " + min + ":" + seg;
     }
     if(totalTime>0){
         totalTime-=1;

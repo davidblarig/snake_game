@@ -34,9 +34,9 @@
 
         <li><a href="#">Temática</a>
             <ul><li>
-                <select name="tematica" class="select-css">
+                <select id="tematica" class="select-css">
                     <option selected>Normal</option>
-                    <option>Desierto</option>
+                    <option id="desierto">Desierto</option>
                 </select>
             </li></ul>
         </li>
@@ -46,9 +46,12 @@
         <li><a href="/thematic/create" class="b1">Crear temática</a></li>
         </ul></nav>
         <hr class="new1">
-        <h2>Puntuación<div id="score">0</div></h1>
-        <h3 id="countdown"></h3>
+        <div class="info">
+            <div id="score">Puntuación: 0</div>
+            <div id="countdown"></div>
+        </div>
         <canvas id="snakeboard" width="400" height="400"></canvas>
+        <h2 id="fin"></h2>
     </body>
 
 </html>
