@@ -35,22 +35,22 @@
         <li><a href="#">Temática</a>
             <ul><li>
                 <select id="tematica" class="select-css">
-                    <option selected>Normal</option>
-                    <option id="desierto">Desierto</option>
+                    <option value="1" class="tematica" selected>Normal</option>
+                    <option value="2" class="tematica">Desierto</option>
                 </select>
             </li></ul>
         </li>
 
-        <li><a href="/ranking" class="b1">Ranking</a></li>
-        <li><a href="/thematic" class="b1">Ver temáticas</a></li>
-        <li><a href="/thematic/create" class="b1">Crear temática</a></li>
+        <li><a href="/ranking">Ranking</a></li>
+        <li><a href="/thematic">Ver temáticas</a></li>
+        <li><a href="/thematic/create">Crear temática</a></li>
         </ul></nav>
         <hr class="new1">
         <div class="info">
-            <div id="score">Puntuación: 0</div>
+            <div id="score"></div>
             <div id="countdown"></div>
         </div>
-        <div class="contenedor"><canvas id="snakeboard" width="400" height="400">Su navegador no soporta canvas</canvas></div>
+        <div class="contenedor"><canvas id="snakeboard" class="image" width="400" height="400"></canvas></div>
         <h2 id="fin"></h2>
     </body>
 

@@ -1,7 +1,18 @@
+// Create the image object
+var image = new Image();
+
+// Add onload event handler
+image.onload = function () {
+    // Done loading, now we can use the image
+};
+
+// Set the source url of the image
+image.src = "snake-graphics.png";
+
 const board_border = 'black';
-const board_background = "white";
-const snake_col = 'lightblue';
-const snake_border = 'darkblue';
+var board_background = 'transparent';
+var snake_col;
+var snake_border;
 
 var totalTime = 120;    
 
@@ -39,6 +50,7 @@ document.addEventListener("keydown", change_direction);
     
 function main() {
     difficulty();
+    setScore();
     mode();
     thematic();
     game();
@@ -63,6 +75,10 @@ function game() {
     }, velocidad)
 }
 
+function setScore() {
+    document.getElementById('score').innerHTML = "Puntuación: " + score;
+}
+
 function mode() {
     if(document.getElementById('modo').value == "val2") {
         updateClock();
@@ -83,8 +99,14 @@ function difficulty() {
 }
 
 function thematic() {
-    if(document.getElementById('desierto').selected == true){
-        alert("Has cambiado de tematica");
+    if(document.getElementById('tematica').value == "1") {
+        board_background = "white";
+        snake_col = 'lightblue';
+        snake_border = 'darkblue';
+    }else if(document.getElementById('tematica').value == "2"){
+        board_background = "#fccd56";
+        snake_col = '#fab300';
+        snake_border = 'black';
     }
 }
     

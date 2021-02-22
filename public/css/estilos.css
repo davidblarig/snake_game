@@ -8,7 +8,7 @@
     top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width:40%;
+    width:30%;
     float:left;
 }
 
@@ -26,6 +26,12 @@
     margin: 20px;
     display:flex;
     justify-content: center;
+}
+
+.image {
+    background-image: url("../../img/snake_fondo3.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 nav a{
