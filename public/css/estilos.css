@@ -8,6 +8,15 @@
     top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width:40%;
+    float:left;
+}
+
+.contenedor{
+    box-sizing:border-box;
+    float:left;
+    width:50%;
+    padding:10px;
 }
 
 .info{

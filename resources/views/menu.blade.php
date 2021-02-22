@@ -50,7 +50,7 @@
             <div id="score">Puntuación: 0</div>
             <div id="countdown"></div>
         </div>
-        <canvas id="snakeboard" width="400" height="400"></canvas>
+        <div class="contenedor"><canvas id="snakeboard" width="400" height="400">Su navegador no soporta canvas</canvas></div>
         <h2 id="fin"></h2>
     </body>
 
