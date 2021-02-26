@@ -1,14 +1,3 @@
-// Create the image object
-var image = new Image();
-
-// Add onload event handler
-image.onload = function () {
-    // Done loading, now we can use the image
-};
-
-// Set the source url of the image
-image.src = "snake-graphics.png";
-
 const board_border = 'black';
 var board_background = 'transparent';
 var snake_col;
@@ -59,9 +48,12 @@ function main() {
 // función game llamada repetidamente para mantener el juego en marcha
 function game() {
     if (has_game_ended()){
-        var mensaje = alert("Fin del juego\nHas conseguido " + score + " puntos");
-        location.reload();
-        return mensaje;
+        velocidad = 100000;
+        snakeboard_ctx.font = "48px serif";
+        snakeboard_ctx.textBaseline = "hanging";
+        snakeboard_ctx.fillText("Fin del juego", 80, 100);
+        document.getElementById('reload').innerHTML = "Reiniciar&emsp;&emsp;";
+        document.getElementById('reload').addEventListener("click", recargar);
     } 
     
     changing_direction = false;
@@ -108,6 +100,10 @@ function thematic() {
         snake_col = '#fab300';
         snake_border = 'black';
     }
+}
+
+function recargar() {
+    location.reload();
 }
     
 // dibujar un borde alrededor del canvas

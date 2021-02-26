@@ -47,6 +47,7 @@
         </ul></nav>
         <hr class="new1">
         <div class="info">
+            <div id="reload"></div>
             <div id="score"></div>
             <div id="countdown"></div>
         </div>
