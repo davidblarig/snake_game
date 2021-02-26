@@ -1,5 +1,5 @@
 const board_border = 'black';
-var board_background = 'transparent';
+var board_background = new Image();
 var snake_col;
 var snake_border;
 
@@ -32,6 +32,18 @@ const snakeboard = document.getElementById("snakeboard");
 const snakeboard_ctx = snakeboard.getContext("2d");
 // Iniciar el juego
 //main();
+var width = snakeboard.width;
+var height = snakeboard.height;
+
+var head_img = new Image();
+head_img.src = "../../img/head.png";
+var body_img = new Image();
+body_img.src = "../../img/body.png";
+var tail_img = new Image();
+tail_img.src = "../../img/tail.png";
+
+var food_img = new Image();
+food_img.src = "../../img/apple.png";
 
 gen_food();
 clear_board();
@@ -48,12 +60,14 @@ function main() {
 // función game llamada repetidamente para mantener el juego en marcha
 function game() {
     if (has_game_ended()){
+        totalTime = 0;
         velocidad = 100000;
-        snakeboard_ctx.font = "48px serif";
-        snakeboard_ctx.textBaseline = "hanging";
-        snakeboard_ctx.fillText("Fin del juego", 80, 100);
+        snakeboard_ctx.font = "48px impact";
+        snakeboard_ctx.fillStyle = "black";
+        snakeboard_ctx.textAlign = "center";
+        snakeboard_ctx.fillText("Game Over", snakeboard.width/2, snakeboard.height/2);
         document.getElementById('reload').innerHTML = "Reiniciar&emsp;&emsp;";
-        document.getElementById('reload').addEventListener("click", recargar);
+        document.getElementById('reload').addEventListener("click", restart);
     } 
     
     changing_direction = false;
@@ -92,20 +106,20 @@ function difficulty() {
 
 function thematic() {
     if(document.getElementById('tematica').value == "1") {
-        board_background = "white";
+        board_background.src = "../../img/theme1.jpg";
         snake_col = 'lightblue';
         snake_border = 'darkblue';
     }else if(document.getElementById('tematica').value == "2"){
-        board_background = "#fccd56";
+        board_background.src = "../../img/desert.png";
         snake_col = '#fab300';
         snake_border = 'black';
     }
 }
 
-function recargar() {
+function restart() {
     location.reload();
 }
-    
+
 // dibujar un borde alrededor del canvas
 function clear_board() {
     //  Selecciona el color para rellenar el dibujo
@@ -113,7 +127,9 @@ function clear_board() {
     //  Selecciona el color para el borde del canvas
     snakeboard_ctx.strokestyle = board_border;
     // Dibuja un rectángulo "relleno" para cubrir todo el canvas
-    snakeboard_ctx.fillRect(0, 0, snakeboard.width, snakeboard.height);
+    
+    snakeboard_ctx.drawImage(board_background, 0, 0, width, height);
+    
     // Dibuja un "borde" alrededor de todo el canvas
     snakeboard_ctx.strokeRect(0, 0, snakeboard.width, snakeboard.height);
 }
@@ -126,22 +142,30 @@ function drawSnake() {
 
 function drawFood() {
     snakeboard_ctx.fillStyle = 'lightgreen';
-    snakeboard_ctx.strokestyle = 'darkgreen';
-    snakeboard_ctx.fillRect(food_x, food_y, 10, 10);
-    snakeboard_ctx.strokeRect(food_x, food_y, 10, 10);
+    //snakeboard_ctx.strokestyle = 'darkgreen';
+    snakeboard_ctx.drawImage(food_img, food_x-4.5, food_y-6, 20, 20);
+    //snakeboard_ctx.strokeRect(food_x, food_y, 10, 10);
 }
     
 // Dibuja una parte de la serpiente
-function drawSnakePart(snakePart) {
+function drawSnakePart() {
     // Establece el color de la parte de la serpiente
-    snakeboard_ctx.fillStyle = snake_col;
+    //snakeboard_ctx.fillStyle = snake_col;
     // Establece el color del borde de la parte de la serpiente
-    snakeboard_ctx.strokestyle = snake_border;
+    //snakeboard_ctx.strokestyle = snake_border;
     // Dibuja un rectángulo "relleno" para representar la parte de la serpiente en las coordenadas 
     // en las que se encuentra
-    snakeboard_ctx.fillRect(snakePart.x, snakePart.y, 10, 10);
+    //snakeboard_ctx.fillRect(snakePart.x, snakePart.y, 10, 10);
+    snakeboard_ctx.drawImage(head_img, snake[0].x-4.5, snake[0].y-5, 20, 20);
+    if(dx == 0 && dy == -10){
+        drawImageRotated(head_img, snake[0].x, snake[0].y, 0.4, -90*Math.PI/180);
+    }
+    snakeboard_ctx.drawImage(tail_img, snake[snake.length-1].x-4.5, snake[snake.length-1].y-5, 20, 20);
+    for(let i = 1; i > 0 && i < snake.length-1; i++){
+        snakeboard_ctx.drawImage(body_img, snake[i].x-4.5, snake[i].y-5, 20, 20);
+    }
     // Dibuja un borde alrededor de la parte de la serpiente
-    snakeboard_ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
+    //snakeboard_ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
 }
 
 function has_game_ended() {
@@ -171,6 +195,13 @@ function gen_food() {
         const has_eaten = part.x == food_x && part.y == food_y;
         if (has_eaten) gen_food();
     });
+}
+
+function drawImageRotated(img, x, y, scale, rot) {
+    snakeboard_ctx.setTransform(scale, 0, 0, scale, x, y);
+    snakeboard_ctx.rotate(rot);
+    snakeboard_ctx.drawImage(img, -img.width / 2, -img.height / 2);
+    snakeboard_ctx.setTransform(1, 0, 0, 1, 0, 0);
 }
 
 function change_direction(event) {

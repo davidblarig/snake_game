@@ -21,6 +21,7 @@
 
 .info{
     text-align: center;
+    font-family: 'Antic Slab';
     font-size: x-large;
     font-weight: bold;
     margin: 20px;
@@ -34,7 +35,13 @@
     background-size: contain;
 }
 
+#reload:hover {
+    color: darkred;
+    cursor: pointer;
+}
+
 nav a{
+    font-family: 'Antic Slab';
     text-decoration:none;
     color:inherit;
     font-size:16px;
