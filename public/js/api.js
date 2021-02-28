@@ -137,7 +137,7 @@ function clear_board() {
 // Dibuja la serpiente en el canvas
 function drawSnake() {
     // Dibuja cada parte
-    snake.forEach(drawSnakePart)
+    snake.forEach(part => drawSnakePart(part))
 }
 
 function drawFood() {
@@ -148,7 +148,7 @@ function drawFood() {
 }
     
 // Dibuja una parte de la serpiente
-function drawSnakePart() {
+function drawSnakePart(part) {
     // Establece el color de la parte de la serpiente
     //snakeboard_ctx.fillStyle = snake_col;
     // Establece el color del borde de la parte de la serpiente
@@ -156,16 +156,32 @@ function drawSnakePart() {
     // Dibuja un rectángulo "relleno" para representar la parte de la serpiente en las coordenadas 
     // en las que se encuentra
     //snakeboard_ctx.fillRect(snakePart.x, snakePart.y, 10, 10);
-    snakeboard_ctx.drawImage(head_img, snake[0].x-4.5, snake[0].y-5, 20, 20);
-    if(dx == 0 && dy == -10){
-        drawImageRotated(head_img, snake[0].x, snake[0].y, 0.4, -90*Math.PI/180);
+    
+    if(part == snake[0]){
+        //snakeboard_ctx.drawImage(head_img, part.x-4.5, part.y-5, 20, 20);
+        changeTexture(head_img, part);
+    }else if(part == snake[snake.length-1]){
+        //snakeboard_ctx.drawImage(tail_img, part.x-4.5, part.y-5, 20, 20);
+        changeTexture(tail_img, part);
+    }else{
+        //snakeboard_ctx.drawImage(body_img, part.x-4.5, part.y-5, 20, 20);
+        changeTexture(body_img, part);
     }
-    snakeboard_ctx.drawImage(tail_img, snake[snake.length-1].x-4.5, snake[snake.length-1].y-5, 20, 20);
-    for(let i = 1; i > 0 && i < snake.length-1; i++){
-        snakeboard_ctx.drawImage(body_img, snake[i].x-4.5, snake[i].y-5, 20, 20);
-    }
+    
     // Dibuja un borde alrededor de la parte de la serpiente
     //snakeboard_ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
+}
+
+function changeTexture(img, part) {
+    if(dx == -10 && dy == 0){
+        drawImageRotated(img, part.x+5, part.y+5, 0.3, 180*Math.PI/180);
+    }else if(dx == 0 && dy == -10){
+        drawImageRotated(img, part.x+5, part.y, 0.3, -90*Math.PI/180);
+    }else if(dx == 10 && dy == 0) {
+        snakeboard_ctx.drawImage(img, part.x-4.5, part.y-5, 20, 20);
+    }else if(dx == 0 && dy == 10){
+        drawImageRotated(img, part.x+5, part.y, 0.3, 90*Math.PI/180);
+    }
 }
 
 function has_game_ended() {
