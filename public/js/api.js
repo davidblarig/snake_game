@@ -39,6 +39,8 @@ var head_img = new Image();
 head_img.src = "../../img/head.png";
 var body_img = new Image();
 body_img.src = "../../img/body.png";
+var body2_img = new Image();
+body2_img.src = "../../img/body2.png";
 var tail_img = new Image();
 tail_img.src = "../../img/tail.png";
 
@@ -135,10 +137,10 @@ function clear_board() {
 }
     
 // Dibuja la serpiente en el canvas
-function drawSnake() {
+/*function drawSnake() {
     // Dibuja cada parte
     snake.forEach(part => drawSnakePart(part))
-}
+}*/
 
 function drawFood() {
     snakeboard_ctx.fillStyle = 'lightgreen';
@@ -148,7 +150,7 @@ function drawFood() {
 }
     
 // Dibuja una parte de la serpiente
-function drawSnakePart(part) {
+function drawSnake() {
     // Establece el color de la parte de la serpiente
     //snakeboard_ctx.fillStyle = snake_col;
     // Establece el color del borde de la parte de la serpiente
@@ -156,17 +158,68 @@ function drawSnakePart(part) {
     // Dibuja un rectángulo "relleno" para representar la parte de la serpiente en las coordenadas 
     // en las que se encuentra
     //snakeboard_ctx.fillRect(snakePart.x, snakePart.y, 10, 10);
-    
-    if(part == snake[0]){
-        //snakeboard_ctx.drawImage(head_img, part.x-4.5, part.y-5, 20, 20);
-        changeTexture(head_img, part);
-    }else if(part == snake[snake.length-1]){
-        //snakeboard_ctx.drawImage(tail_img, part.x-4.5, part.y-5, 20, 20);
-        changeTexture(tail_img, part);
-    }else{
-        //snakeboard_ctx.drawImage(body_img, part.x-4.5, part.y-5, 20, 20);
-        changeTexture(body_img, part);
-    }
+    for(var i = 0; i < snake.length; i++) {
+        var segment = snake[i];
+        var segx = segment.x;
+        var segy = segment.y;
+
+        if(i == 0){
+            //snakeboard_ctx.drawImage(head_img, part.x-4.5, part.y-5, 20, 20);
+            var nseg = snake[i+1]; //siguiente elemento
+            if (segy < nseg.y) {
+                // Up
+                changeTexture(head_img, segment);
+            } else if (segx > nseg.x) {
+                // Right
+                changeTexture(head_img, segment);
+            } else if (segy > nseg.y) {
+                // Down
+                changeTexture(head_img, segment);
+            } else if (segx < nseg.x) {
+                // Left
+                changeTexture(head_img, segment);
+            }
+        }else if(i == snake.length-1){
+            //snakeboard_ctx.drawImage(tail_img, part.x-4.5, part.y-5, 20, 20);
+            var pseg = snake[i-1]; //segmento previo
+            if (pseg.y < segy) {
+                // Up
+                changeTexture(tail_img, segment);
+            } else if (pseg.x > segx) {
+                // Right
+                changeTexture(tail_img, segment);
+            } else if (pseg.y > segy) {
+                // Down
+                changeTexture(tail_img, segment);
+            } else if (pseg.x < segx) {
+                // Left
+                changeTexture(tail_img, segment);
+            }
+        }else{
+            //snakeboard_ctx.drawImage(body_img, part.x-4.5, part.y-5, 20, 20);
+            var nseg = snake[i+1];
+            var pseg = snake[i-1];
+            if (pseg.x < segx && nseg.x > segx || nseg.x < segx && pseg.x > segx) {
+                // Horizontal Left-Right
+                changeTexture(body_img, segment);
+            } else if (pseg.x < segx && nseg.y > segy || nseg.x < segx && pseg.y > segy) {
+                // Angle Left-Down
+                changeTexture(body2_img, segment);
+            } else if (pseg.y < segy && nseg.y > segy || nseg.y < segy && pseg.y > segy) {
+                // Vertical Up-Down
+                changeTexture(body_img, segment);
+            } else if (pseg.y < segy && nseg.x < segx || nseg.y < segy && pseg.x < segx) {
+                // Angle Top-Left
+                changeTexture(body2_img, segment);
+            } else if (pseg.x > segx && nseg.y < segy || nseg.x > segx && pseg.y < segy) {
+                // Angle Right-Up
+                changeTexture(body2_img, segment);
+            } else if (pseg.y > segy && nseg.x > segx || nseg.y > segy && pseg.x > segx) {
+                // Angle Down-Right
+                changeTexture(body2_img, segment);
+            }
+        }
+    } 
     
     // Dibuja un borde alrededor de la parte de la serpiente
     //snakeboard_ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
