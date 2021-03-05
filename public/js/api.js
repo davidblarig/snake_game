@@ -168,32 +168,40 @@ function drawSnake() {
             var nseg = snake[i+1]; //siguiente elemento
             if (segy < nseg.y) {
                 // Up
-                changeTexture(head_img, segment);
+                //changeTexture(head_img, segment);
+                drawImageRotated(head_img, segx+5, segy, 0.3, -90*Math.PI/180);
             } else if (segx > nseg.x) {
                 // Right
-                changeTexture(head_img, segment);
+                //changeTexture(head_img, segment);
+                snakeboard_ctx.drawImage(head_img, segx, segy-5, 20, 20);
             } else if (segy > nseg.y) {
                 // Down
-                changeTexture(head_img, segment);
+                //changeTexture(head_img, segment);
+                drawImageRotated(head_img, segx+5, segy+10, 0.3, 90*Math.PI/180);
             } else if (segx < nseg.x) {
                 // Left
-                changeTexture(head_img, segment);
+                //changeTexture(head_img, segment);
+                drawImageRotated(head_img, segx, segy+5, 0.3, 180*Math.PI/180);
             }
         }else if(i == snake.length-1){
             //snakeboard_ctx.drawImage(tail_img, part.x-4.5, part.y-5, 20, 20);
             var pseg = snake[i-1]; //segmento previo
             if (pseg.y < segy) {
                 // Up
-                changeTexture(tail_img, segment);
+                //changeTexture(tail_img, segment);
+                drawImageRotated(tail_img, segx+5, segy+10, 0.3, -90*Math.PI/180);
             } else if (pseg.x > segx) {
                 // Right
-                changeTexture(tail_img, segment);
+                //changeTexture(tail_img, segment);
+                snakeboard_ctx.drawImage(tail_img, segx-10, segy-5, 20, 20);
             } else if (pseg.y > segy) {
                 // Down
-                changeTexture(tail_img, segment);
+                //changeTexture(tail_img, segment);
+                drawImageRotated(tail_img, segx+5, segy, 0.3, 90*Math.PI/180);
             } else if (pseg.x < segx) {
                 // Left
-                changeTexture(tail_img, segment);
+                //changeTexture(tail_img, segment);
+                drawImageRotated(tail_img, segx+10, segy+5, 0.3, 180*Math.PI/180);
             }
         }else{
             //snakeboard_ctx.drawImage(body_img, part.x-4.5, part.y-5, 20, 20);
@@ -201,40 +209,57 @@ function drawSnake() {
             var pseg = snake[i-1];
             if (pseg.x < segx && nseg.x > segx || nseg.x < segx && pseg.x > segx) {
                 // Horizontal Left-Right
-                changeTexture(body_img, segment);
+                //changeTexture(body_img, segment);
+                drawImageRotated(body_img, segx, segy+5, 0.3, 180*Math.PI/180);
             } else if (pseg.x < segx && nseg.y > segy || nseg.x < segx && pseg.y > segy) {
                 // Angle Left-Down
-                changeTexture(body2_img, segment);
+                //changeTexture(body2_img, segment);
+                drawImageRotated(body2_img, segx+5, segy+5, 0.3, 180*Math.PI/180);
             } else if (pseg.y < segy && nseg.y > segy || nseg.y < segy && pseg.y > segy) {
                 // Vertical Up-Down
-                changeTexture(body_img, segment);
+                //changeTexture(body_img, segment);
+                drawImageRotated(body_img, segx+5, segy, 0.3, -90*Math.PI/180);
             } else if (pseg.y < segy && nseg.x < segx || nseg.y < segy && pseg.x < segx) {
                 // Angle Top-Left
-                changeTexture(body2_img, segment);
+                //changeTexture(body2_img, segment);
+                drawImageRotated(body2_img, segx+5, segy+5, 0.3, -90*Math.PI/180);
             } else if (pseg.x > segx && nseg.y < segy || nseg.x > segx && pseg.y < segy) {
                 // Angle Right-Up
-                changeTexture(body2_img, segment);
+                //changeTexture(body2_img, segment);
+                snakeboard_ctx.drawImage(body2_img, segx-5, segy-5, 20, 20);
             } else if (pseg.y > segy && nseg.x > segx || nseg.y > segy && pseg.x > segx) {
                 // Angle Down-Right
-                changeTexture(body2_img, segment);
+                //changeTexture(body2_img, segment);
+                drawImageRotated(body2_img, segx+5, segy+5, 0.3, 90*Math.PI/180);
             }
         }
+
+        //snakeboard_ctx.strokestyle = snake_border;
+        //snakeboard_ctx.strokeRect(segx, segy, 10, 10);
     } 
     
     // Dibuja un borde alrededor de la parte de la serpiente
     //snakeboard_ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
+    
 }
 
-function changeTexture(img, part) {
-    if(dx == -10 && dy == 0){
-        drawImageRotated(img, part.x+5, part.y+5, 0.3, 180*Math.PI/180);
-    }else if(dx == 0 && dy == -10){
-        drawImageRotated(img, part.x+5, part.y, 0.3, -90*Math.PI/180);
-    }else if(dx == 10 && dy == 0) {
-        snakeboard_ctx.drawImage(img, part.x-4.5, part.y-5, 20, 20);
-    }else if(dx == 0 && dy == 10){
-        drawImageRotated(img, part.x+5, part.y, 0.3, 90*Math.PI/180);
+function changeTexture(img, segment) {
+    if(dx == -10 && dy == 0){ //LEFT
+        drawImageRotated(img, segment.x+5, segment.y+5, 0.3, 180*Math.PI/180);
+    }else if(dx == 0 && dy == -10){ //UP
+        drawImageRotated(img, segment.x+5, segment.y, 0.3, -90*Math.PI/180);
+    }else if(dx == 10 && dy == 0) { //RIGHT
+        snakeboard_ctx.drawImage(img, segment.x-4.5, segment.y-5, 20, 20);
+    }else if(dx == 0 && dy == 10){ //DOWN
+        drawImageRotated(img, segment.x+5, segment.y, 0.3, 90*Math.PI/180);
     }
+}
+
+function drawImageRotated(img, x, y, scale, rot) {
+    snakeboard_ctx.setTransform(scale, 0, 0, scale, x, y);
+    snakeboard_ctx.rotate(rot);
+    snakeboard_ctx.drawImage(img, -img.width / 2, -img.height / 2);
+    snakeboard_ctx.setTransform(1, 0, 0, 1, 0, 0);
 }
 
 function has_game_ended() {
@@ -264,13 +289,6 @@ function gen_food() {
         const has_eaten = part.x == food_x && part.y == food_y;
         if (has_eaten) gen_food();
     });
-}
-
-function drawImageRotated(img, x, y, scale, rot) {
-    snakeboard_ctx.setTransform(scale, 0, 0, scale, x, y);
-    snakeboard_ctx.rotate(rot);
-    snakeboard_ctx.drawImage(img, -img.width / 2, -img.height / 2);
-    snakeboard_ctx.setTransform(1, 0, 0, 1, 0, 0);
 }
 
 function change_direction(event) {
