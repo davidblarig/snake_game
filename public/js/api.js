@@ -115,6 +115,10 @@ function thematic() {
         board_background.src = "../../img/desert.png";
         snake_col = '#fab300';
         snake_border = 'black';
+    }else if(document.getElementById('tematica').value == "3"){
+        board_background.src = "../../img/almeria.jpg";
+        snake_col = '#fab300';
+        snake_border = 'black';
     }
 }
 
@@ -161,78 +165,10 @@ function drawSnake() {
     for(var i = 0; i < snake.length; i++) {
         var segment = snake[i];
         var segx = segment.x;
-        var segy = segment.y;
+        var segy  = segment.y;
+        var scale = 0.3;
 
-        if(i == 0){
-            //snakeboard_ctx.drawImage(head_img, part.x-4.5, part.y-5, 20, 20);
-            var nseg = snake[i+1]; //siguiente elemento
-            if (segy < nseg.y) {
-                // Up
-                //changeTexture(head_img, segment);
-                drawImageRotated(head_img, segx+5, segy, 0.3, -90*Math.PI/180);
-            } else if (segx > nseg.x) {
-                // Right
-                //changeTexture(head_img, segment);
-                snakeboard_ctx.drawImage(head_img, segx, segy-5, 20, 20);
-            } else if (segy > nseg.y) {
-                // Down
-                //changeTexture(head_img, segment);
-                drawImageRotated(head_img, segx+5, segy+10, 0.3, 90*Math.PI/180);
-            } else if (segx < nseg.x) {
-                // Left
-                //changeTexture(head_img, segment);
-                drawImageRotated(head_img, segx, segy+5, 0.3, 180*Math.PI/180);
-            }
-        }else if(i == snake.length-1){
-            //snakeboard_ctx.drawImage(tail_img, part.x-4.5, part.y-5, 20, 20);
-            var pseg = snake[i-1]; //segmento previo
-            if (pseg.y < segy) {
-                // Up
-                //changeTexture(tail_img, segment);
-                drawImageRotated(tail_img, segx+5, segy+10, 0.3, -90*Math.PI/180);
-            } else if (pseg.x > segx) {
-                // Right
-                //changeTexture(tail_img, segment);
-                snakeboard_ctx.drawImage(tail_img, segx-10, segy-5, 20, 20);
-            } else if (pseg.y > segy) {
-                // Down
-                //changeTexture(tail_img, segment);
-                drawImageRotated(tail_img, segx+5, segy, 0.3, 90*Math.PI/180);
-            } else if (pseg.x < segx) {
-                // Left
-                //changeTexture(tail_img, segment);
-                drawImageRotated(tail_img, segx+10, segy+5, 0.3, 180*Math.PI/180);
-            }
-        }else{
-            //snakeboard_ctx.drawImage(body_img, part.x-4.5, part.y-5, 20, 20);
-            var nseg = snake[i+1];
-            var pseg = snake[i-1];
-            if (pseg.x < segx && nseg.x > segx || nseg.x < segx && pseg.x > segx) {
-                // Horizontal Left-Right
-                //changeTexture(body_img, segment);
-                drawImageRotated(body_img, segx, segy+5, 0.3, 180*Math.PI/180);
-            } else if (pseg.x < segx && nseg.y > segy || nseg.x < segx && pseg.y > segy) {
-                // Angle Left-Down
-                //changeTexture(body2_img, segment);
-                drawImageRotated(body2_img, segx+5, segy+5, 0.3, 180*Math.PI/180);
-            } else if (pseg.y < segy && nseg.y > segy || nseg.y < segy && pseg.y > segy) {
-                // Vertical Up-Down
-                //changeTexture(body_img, segment);
-                drawImageRotated(body_img, segx+5, segy, 0.3, -90*Math.PI/180);
-            } else if (pseg.y < segy && nseg.x < segx || nseg.y < segy && pseg.x < segx) {
-                // Angle Top-Left
-                //changeTexture(body2_img, segment);
-                drawImageRotated(body2_img, segx+5, segy+5, 0.3, -90*Math.PI/180);
-            } else if (pseg.x > segx && nseg.y < segy || nseg.x > segx && pseg.y < segy) {
-                // Angle Right-Up
-                //changeTexture(body2_img, segment);
-                snakeboard_ctx.drawImage(body2_img, segx-5, segy-5, 20, 20);
-            } else if (pseg.y > segy && nseg.x > segx || nseg.y > segy && pseg.x > segx) {
-                // Angle Down-Right
-                //changeTexture(body2_img, segment);
-                drawImageRotated(body2_img, segx+5, segy+5, 0.3, 90*Math.PI/180);
-            }
-        }
+        changeTexture(i, segx, segy, scale);
 
         //snakeboard_ctx.strokestyle = snake_border;
         //snakeboard_ctx.strokeRect(segx, segy, 10, 10);
@@ -243,15 +179,62 @@ function drawSnake() {
     
 }
 
-function changeTexture(img, segment) {
-    if(dx == -10 && dy == 0){ //LEFT
-        drawImageRotated(img, segment.x+5, segment.y+5, 0.3, 180*Math.PI/180);
-    }else if(dx == 0 && dy == -10){ //UP
-        drawImageRotated(img, segment.x+5, segment.y, 0.3, -90*Math.PI/180);
-    }else if(dx == 10 && dy == 0) { //RIGHT
-        snakeboard_ctx.drawImage(img, segment.x-4.5, segment.y-5, 20, 20);
-    }else if(dx == 0 && dy == 10){ //DOWN
-        drawImageRotated(img, segment.x+5, segment.y, 0.3, 90*Math.PI/180);
+function changeTexture(i, segx, segy, scale) {
+    if(i == 0){
+        var nseg = snake[i+1]; //siguiente elemento
+        if (segy < nseg.y) {
+            // Up
+            drawImageRotated(head_img, segx+5, segy, scale, -90*Math.PI/180);
+        } else if (segx > nseg.x) {
+            // Right
+            //snakeboard_ctx.drawImage(head_img, segx, segy-5, 20, 20);
+            drawImageRotated(head_img, segx+10, segy+5, scale, 0);
+        } else if (segy > nseg.y) {
+            // Down
+            drawImageRotated(head_img, segx+5, segy+10, scale, 90*Math.PI/180);
+        } else if (segx < nseg.x) {
+            // Left
+            drawImageRotated(head_img, segx, segy+5, scale, 180*Math.PI/180);
+        }
+    }else if(i == snake.length-1){
+        var pseg = snake[i-1]; //segmento previo
+        if (pseg.y < segy) {
+            // Up
+            drawImageRotated(tail_img, segx+5, segy+10, scale, -90*Math.PI/180);
+        } else if (pseg.x > segx) {
+            // Right
+            //snakeboard_ctx.drawImage(tail_img, segx-10, segy-5, 20, 20);
+            drawImageRotated(tail_img, segx, segy+5, scale, 0);
+        } else if (pseg.y > segy) {
+            // Down
+            drawImageRotated(tail_img, segx+5, segy, scale, 90*Math.PI/180);
+        } else if (pseg.x < segx) {
+            // Left
+            drawImageRotated(tail_img, segx+10, segy+5, scale, 180*Math.PI/180);
+        }
+    }else{
+        var nseg = snake[i+1];
+        var pseg = snake[i-1];
+        if (pseg.x < segx && nseg.x > segx || nseg.x < segx && pseg.x > segx) {
+            // Horizontal Left-Right
+            drawImageRotated(body_img, segx, segy+5, scale, 180*Math.PI/180);
+        } else if (pseg.x < segx && nseg.y > segy || nseg.x < segx && pseg.y > segy) {
+            // Angle Left-Down
+            drawImageRotated(body2_img, segx+5, segy+5, scale, 180*Math.PI/180);
+        } else if (pseg.y < segy && nseg.y > segy || nseg.y < segy && pseg.y > segy) {
+            // Vertical Up-Down
+            drawImageRotated(body_img, segx+5, segy, scale, -90*Math.PI/180);
+        } else if (pseg.y < segy && nseg.x < segx || nseg.y < segy && pseg.x < segx) {
+            // Angle Top-Left
+            drawImageRotated(body2_img, segx+5, segy+5, scale, -90*Math.PI/180);
+        } else if (pseg.x > segx && nseg.y < segy || nseg.x > segx && pseg.y < segy) {
+            // Angle Right-Up
+            //snakeboard_ctx.drawImage(body2_img, segx-5, segy-5, 20, 20);
+            drawImageRotated(body2_img, segx+5, segy+5, scale, 0);
+        } else if (pseg.y > segy && nseg.x > segx || nseg.y > segy && pseg.x > segx) {
+            // Angle Down-Right
+            drawImageRotated(body2_img, segx+5, segy+5, scale, 90*Math.PI/180);
+        }
     }
 }
 

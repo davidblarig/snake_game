@@ -37,6 +37,8 @@
                 <select id="tematica" class="select-css">
                     <option value="1" class="tematica" selected>Normal</option>
                     <option value="2" class="tematica">Desierto</option>
+                    <option value="3" class="tematica">Almería</option>
+                    <option value="4" class="tematica">Personalizado</option>
                 </select>
             </li></ul>
         </li>
