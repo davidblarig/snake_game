@@ -15,9 +15,9 @@ class ThematicSGController extends Controller
     public function index()
     {
         //
-        $thematics=ThematicSG::all();
+        $thematicsList=ThematicSG::all();
 
-        return view('Thematic.index', ['thematics'=>$thematics]);
+        return view('SG/Thematic/showThematicsSG', ['thematicsList'=>$thematicsList]);
     }
 
     /**
@@ -27,8 +27,7 @@ class ThematicSGController extends Controller
      */
     public function create()
     {
-        //
-        return view('Thematic.create');
+        return view('SG/Thematic/create');
     }
 
     /**
@@ -37,12 +36,26 @@ class ThematicSGController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $r)
     {
-        //
-        $this->validate($request,['type'=>'required','name'=>'required','description'=>'required','background'=>'required','snake_color'=>'required']);
-        ThematicSG::create($request->all());
-        return redirect()->route('thematic.index')->with('success','Registro creado satisfactoriamente');
+        /*$this->validate($r,['type'=>'required','name'=>'required','description'=>'required','background'=>'required','snake_color'=>'required']);
+        ThematicSG::create($r->all());
+        return redirect()->route('thematic.index')->with('success','Registro creado satisfactoriamente');*/
+
+        if($r->hasFile('background')){
+            $file = $r->file('background');
+            $name_bg = $file->getClientOriginalName();
+            $file->move(public_path().'/images/imagesSG', $name_bg);
+        }
+
+        $thematic = new ThematicSG();
+        $thematic->type = $r->type;
+        $thematic->name = $r->name;
+        $thematic->description = $r->description;
+        $thematic->background = $name_bg;
+        $thematic->snake_color = $r->snake_color;
+        $thematic->save();
+        return redirect()->route('ThematicSG.index');
     }
 
     /**
@@ -53,8 +66,7 @@ class ThematicSGController extends Controller
      */
     public function show($id)
     {
-        $thematics=ThematicSG::find($id);
-        return view('Thematic.show',compact('thematics'));
+        return view('SG/menu');
     }
 
     /**
@@ -65,9 +77,8 @@ class ThematicSGController extends Controller
      */
     public function edit($id)
     {
-        //
         $thematic=ThematicSG::find($id);
-        return view('thematic.edit',compact('thematic'));
+        return view('SG/Thematic/edit', array('thematic'=>$thematics));
     }
 
     /**
@@ -77,13 +88,21 @@ class ThematicSGController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $r, $id)
     {
-        //
-        $this->validate($request,['type'=>'required','name'=>'required','description'=>'required','background'=>'required','snake_color'=>'required']);
+        /*$this->validate($request,['type'=>'required','name'=>'required','description'=>'required','background'=>'required','snake_color'=>'required']);
 
         ThematicSG::find($id)->update($request->all());
-        return redirect()->route('thematic.index')->with('success','Registro actualizado satisfactoriamente');
+        return redirect()->route('thematic.index')->with('success','Registro actualizado satisfactoriamente');*/
+
+        $thematic = ThematicSG::find($r->$id);
+        $thematic->type = $r->type;
+        $thematic->name = $r->name;
+        $thematic->description = $r->description;
+        $thematic->background = $r->background;
+        $thematic->snake_color = $r->snake_color;
+        $thematic->save();
+        return redirect()->route('ThematicSG.index');
     }
 
     /**
@@ -94,8 +113,12 @@ class ThematicSGController extends Controller
      */
     public function destroy($id)
     {
-        //
-        ThematicSG::find($id)->delete();
+        /*ThematicSG::find($id)->delete();
         return redirect()->route('thematic.index')->with('success','Registro eliminado satisfactoriamente');
+        */
+        $thematic = ThematicSG::find($id);
+        $thematic->delete();
+        return redirect()->route('ThematicSG.index');
+
     }
 }

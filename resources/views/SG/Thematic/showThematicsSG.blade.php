@@ -6,11 +6,11 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="pull-left"><h3>Lista Temáticas</h3></div>
-          <!--<div class="pull-right">
+          <div class="pull-right">
             <div class="btn-group">
-              <a href="{{ route('thematic.create') }}" class="btn btn-info" >Añadir Temática</a>
+              <a href="{{ route('ThematicSG.create') }}" class="btn btn-info" >Añadir Temática</a>
             </div>
-          </div>-->
+          </div>
           <div class="table-container">
             <table id="mytable" class="table table-bordred table-striped">
              <thead>
@@ -21,17 +21,17 @@
                <th>Color Serpiente</th>
              </thead>
              <tbody>
-              @if($thematics->count())  
-              @foreach($thematics as $thematic)  
+              @if($thematicsList->count())  
+              @foreach($thematicsList as $thematic)  
               <tr>
                 <td>{{$thematic->type}}</td>
                 <td>{{$thematic->name}}</td>
                 <td>{{$thematic->description}}</td>
-                <td>{{$thematic->background}}</td>
+                <td><img src="images/imagesSG/{{$thematic -> background}}" width="150px" height="100px"></td>
                 <td>{{$thematic->snake_color}}</td>
-                <!--<td><a class="btn btn-primary btn-xs" href="{{action('ThematicSGController@edit', $thematic->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
+                <!--<td><a class="btn btn-primary btn-xs" href="{{action('ThematicSG.edit', $thematic->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
                 <td>
-                  <form action="{{action('ThematicSGController@destroy', $thematic->id)}}" method="post">
+                  <form action="{{action('ThematicSG.destroy', $thematic->id)}}" method="post">
                    {{csrf_field()}}
                    <input name="_method" type="hidden" value="DELETE">
 
@@ -41,7 +41,7 @@
                @endforeach 
                @else
                <tr>
-                <td colspan="8">No hay registro !!</td>
+                <td colspan="6">No hay registro !!</td>
               </tr>
               @endif
             </tbody>
@@ -49,7 +49,11 @@
           </table>
         </div>
       </div>
-      <!--{{ $thematics->links() }}-->
+      <div class="pull-left">
+            <div class="btn-group">
+              <a href="{{ route('ThematicSG.menu') }}" class="btn btn-info" >Volver</a>
+            </div>
+          </div>
     </div>
   </div>
 </section>

@@ -8,8 +8,8 @@
         <script type="text/javascript" src="{!! asset('js/api.js') !!}" async></script>
     </head>
     <body>
-        <h1 class="glow">{{$title}}</h1>
-
+        <h1 class="glow" id="title" style="visibility:hidden">{{$title}}</h1>
+        
         <nav><ul>
         <li><a href="javascript:main()" class="start">Jugar</a></li>
         
@@ -35,17 +35,17 @@
         <li><a href="#">Temática</a>
             <ul><li>
                 <select id="tematica" class="select-css">
-                    <option value="1" class="tematica" selected>Normal</option>
-                    <option value="2" class="tematica">Desierto</option>
-                    <option value="3" class="tematica">Almería</option>
-                    <option value="4" class="tematica">Personalizado</option>
+                    <option value="1" selected>Normal</option>
+                    <option value="2">Desierto</option>
+                    <option value="3">Almería</option>
+                    <option value="4">Personalizado</option>
                 </select>
             </li></ul>
         </li>
 
-        <li><a href="/ranking">Ranking</a></li>
-        <li><a href="/thematic">Ver temáticas</a></li>
-        <li><a href="/thematic/create">Crear temática</a></li>
+        <li><a href="/rankingSG">Ranking</a></li>
+        <li><a href="/thematicSG">Ver temáticas</a></li>
+        <li><a href="/thematicSG/create">Crear temática</a></li>
         </ul></nav>
         <hr class="new1">
         <div class="info">

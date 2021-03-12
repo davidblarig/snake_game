@@ -21,10 +21,15 @@ use App\Http\Controllers\MenuSGController;
 use App\Http\Controllers\ThematicSGController;
 use App\Http\Controllers\RankingSGController;
 
-Route::get('/', [MenuSGController::class, 'index'])->name('menu');
+Route::get('/menuSG', [MenuSGController::class, 'index'])->name('ThematicSG.menu');
 
-Route::resource('/thematic', ThematicSGController::class);
-Route::get('ranking', [RankingSGController::class, 'index']);
+Route::resource('/thematicSG', ThematicSGController::class);
+Route::get('/thematicSG/create', 'ThematicSGController@create')->name('ThematicSG.create');
+Route::get('/thematicSG/{id}/edit', 'ThematicSGController@edit')->name('ThematicSG.edit');
+Route::post('/thematicSG/store', 'ThematicSGController@store')->name('ThematicSG.store');
+Route::put('thematicSG/{id}', 'ThematicSGCotroller@update')->name('ThematicSG.update');
+Route::delete('/thematic/{id}/delete', 'ThematicSGController@destroy')->name('ThematicSG.destroy');
+Route::get('/rankingSG', [RankingSGController::class, 'index']);
 
 //----------Tematicas_slide----------------//
 //Route::get('/tematicasSG', 'TematicasSGController@index')->name('TematicasST.index');;
