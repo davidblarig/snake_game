@@ -105,24 +105,18 @@ function difficulty() {
         points = 10;
     }
 }
-console.log(document.getElementById('title').innerHTML);
-function thematic() {
-    /*for(var i=0; i<document.getElementById('tematica').length; i++){
-        board_background.src = "";
-    }*/
 
-    if(document.getElementById('tematica').value == "1") {
-        board_background.src = "../../images/imagesSG/theme1.jpg";
-        snake_col = 'lightblue';
-        snake_border = 'darkblue';
-    }else if(document.getElementById('tematica').value == "2"){
-        board_background.src = "../../images/imagesSG/desert.png";
-        snake_col = '#fab300';
-        snake_border = 'black';
-    }else if(document.getElementById('tematica').value == "3"){
-        board_background.src = "../../images/imagesSG/almeria.jpg";
-        snake_col = '#fab300';
-        snake_border = 'black';
+var url_imgs = "../../images/imagesSG/";
+var bg_list = document.getElementById('bg-list').innerHTML;
+var bg_imgs = bg_list.split(",");
+
+function thematic() {
+    for(var i=1; i<=bg_imgs.length; i++){
+        if(document.getElementById('tematica').value == i){
+            board_background.src = url_imgs + bg_imgs[i-1];
+        }
+        
+        console.log(document.getElementById('tematica').value);
     }
 }
 

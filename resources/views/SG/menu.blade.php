@@ -8,7 +8,7 @@
         <script type="text/javascript" src="{!! asset('js/api.js') !!}" async></script>
     </head>
     <body>
-        <h1 class="glow" id="title" style="visibility:hidden">{{$title}}</h1>
+        <h1 class="glow" id="title">{{$title}}</h1>
         
         <nav><ul>
         <li><a href="javascript:main()" class="start">Jugar</a></li>
@@ -55,6 +55,7 @@
         </div>
         <div class="contenedor"><canvas id="snakeboard" class="image" width="400" height="400"></canvas></div>
         <h2 id="fin"></h2>
+        <p id="bg-list" style="visibility:hidden">{{$bg}}</p>
     </body>
 
 </html>
