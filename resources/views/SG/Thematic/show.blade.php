@@ -21,8 +21,8 @@
                <th>Color Serpiente</th>
              </thead>
              <tbody>
-              @if($thematicsList->count())  
-              @foreach($thematicsList as $thematic)  
+              @if($thematicsList->count()) 
+              @foreach($thematicsList as $thematic) 
               <tr>
                 <td>{{$thematic->type}}</td>
                 <td>{{$thematic->name}}</td>
@@ -36,7 +36,7 @@
                    <input name="_method" type="hidden" value="DELETE">
 
                    <button class="btn btn-danger btn-xs" type="submit"><span class="glyphicon glyphicon-trash"></span></button>
-                 </td>-->
+                </td>-->
                </tr>
                @endforeach 
                @else
@@ -51,7 +51,7 @@
       </div>
       <div class="pull-left">
             <div class="btn-group">
-              <a href="{{ route('ThematicSG.menu') }}" class="btn btn-info" >Volver</a>
+              <a href="{{ route('ThematicSG.store') }}" class="btn btn-info" >Volver</a>
             </div>
           </div>
     </div>

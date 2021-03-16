@@ -17,7 +17,7 @@ class RankingSGController extends Controller
         //
         $rankings=RankingSG::orderBy('score','DESC')->paginate(10);
         //$rankings=RankingSG::all();
-        return view('Ranking.index', ['rankings'=>$rankings]);
+        return view('SG/Ranking/index', ['rankings'=>$rankings]);
     }
 
     /**
@@ -28,7 +28,7 @@ class RankingSGController extends Controller
     public function create()
     {
         //
-        return view('Ranking.create');
+        return view('SG/Ranking/create');
     }
 
     /**
@@ -67,7 +67,7 @@ class RankingSGController extends Controller
     {
         //
         $ranking=RankingSG::find($id);
-        return view('ranking.edit',compact('ranking'));
+        return view('SG/Ranking/edit',compact('ranking'));
     }
 
     /**
@@ -96,6 +96,6 @@ class RankingSGController extends Controller
     {
         //
         RankingSG::find($id)->delete();
-        return redirect()->route('ranking.index')->with('success','Registro eliminado satisfactoriamente');
+        return redirect()->route('RankingSG.index')->with('success','Registro eliminado satisfactoriamente');
     }
 }

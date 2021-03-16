@@ -46,7 +46,7 @@
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="text" name="background" id="background" class="form-control input-sm" placeholder="Fondo de la temática">
+										<input type="file" name="background" id="background" class="form-control input-sm" placeholder="Fondo de la temática">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
@@ -60,7 +60,7 @@
 
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<input type="submit"  value="Guardar" class="btn btn-success btn-block">
-									<a href="{{ route('ThematicSG.index') }}" class="btn btn-info btn-block" >Atrás</a>
+									<a href="{{ route('ThematicSG.store') }}" class="btn btn-info btn-block" >Atrás</a>
 								</div>	
 
 							</div>

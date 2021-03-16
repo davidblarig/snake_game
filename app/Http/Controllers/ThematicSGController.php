@@ -17,7 +17,7 @@ class ThematicSGController extends Controller
         //
         $thematicsList=ThematicSG::all();
 
-        return view('SG/Thematic/showThematicsSG', ['thematicsList'=>$thematicsList]);
+        return view('SG/Thematic/show', ['thematicsList'=>$thematicsList]);
     }
 
     /**
@@ -66,7 +66,20 @@ class ThematicSGController extends Controller
      */
     public function show($id)
     {
-        return view('SG/menu');
+        $thematicsList=ThematicSG::all();
+        if($thematicsList->count())
+        foreach($thematicsList as $thematic){
+            $bg = $thematic->background;
+            $arr_bg[] = $bg;
+        };
+
+        $str_bg = implode(',', $arr_bg);
+
+        return view('SG/menu', [
+            'title' => 'Snake Game',
+            'thematicsList'=>$thematicsList,
+            'bg'=>$str_bg
+        ]);
     }
 
     /**
@@ -77,7 +90,7 @@ class ThematicSGController extends Controller
      */
     public function edit($id)
     {
-        $thematic=ThematicSG::find($id);
+        $thematics = ThematicSG::find($id);
         return view('SG/Thematic/edit', array('thematic'=>$thematics));
     }
 

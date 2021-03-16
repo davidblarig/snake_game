@@ -25,7 +25,7 @@
 				</div>
 				<div class="panel-body">					
 					<div class="table-container">
-						<form method="POST" action="{{ route('thematic.update',$thematic->id) }}"  role="form">
+						<form method="POST" action="{{ route('ThematicSG.update',$thematic->id) }}"  role="form">
 							{{ csrf_field() }}
 							<input name="_method" type="hidden" value="PATCH">
 							<div class="row">
@@ -61,7 +61,7 @@
 
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<input type="submit"  value="Actualizar" class="btn btn-success btn-block">
-									<a href="{{ route('thematic.index') }}" class="btn btn-info btn-block" >Atrás</a>
+									<a href="{{ route('ThematicSG.store') }}" class="btn btn-info btn-block" >Atrás</a>
 								</div>	
 
 							</div>

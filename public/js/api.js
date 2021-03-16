@@ -35,17 +35,19 @@ const snakeboard_ctx = snakeboard.getContext("2d");
 var width = snakeboard.width;
 var height = snakeboard.height;
 
+var url_imgs = "../../images/imagesSG/";
+
 var head_img = new Image();
-head_img.src = "../../images/imagesSG/head.png";
+head_img.src = url_imgs + "head.png";
 var body_img = new Image();
-body_img.src = "../../images/imagesSG/body.png";
+body_img.src = url_imgs + "body.png";
 var body2_img = new Image();
-body2_img.src = "../../images/imagesSG/body2.png";
+body2_img.src = url_imgs + "body2.png";
 var tail_img = new Image();
-tail_img.src = "../../images/imagesSG/tail.png";
+tail_img.src = url_imgs + "tail.png";
 
 var food_img = new Image();
-food_img.src = "../../images/imagesSG/apple.png";
+food_img.src = url_imgs + "apple.png";
 
 gen_food();
 clear_board();
@@ -106,7 +108,6 @@ function difficulty() {
     }
 }
 
-var url_imgs = "../../images/imagesSG/";
 var bg_list = document.getElementById('bg-list').innerHTML;
 var bg_imgs = bg_list.split(",");
 

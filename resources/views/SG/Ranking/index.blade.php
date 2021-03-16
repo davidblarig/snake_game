@@ -8,7 +8,7 @@
           <div class="pull-left"><h3>Ranking</h3></div>
           <!--<div class="pull-right">
             <div class="btn-group">
-              <a href="{{ route('ranking.create') }}" class="btn btn-info" >Añadir Ranking</a>
+              <a href="{{ route('RankingSG.create') }}" class="btn btn-info" >Añadir Ranking</a>
             </div>
           </div>-->
           <div class="table-container">
@@ -25,9 +25,9 @@
                 <td>{{$ranking->score}}</td>
                 <td>{{$ranking->date}}</td>
                 <td>{{$ranking->mode}}</td>
-                <!--<td><a class="btn btn-primary btn-xs" href="{{action('RankingController@edit', $ranking->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
+                <!--<td><a class="btn btn-primary btn-xs" href="{{action('RankingSG.edit', $ranking->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
                 <td>
-                  <form action="{{action('RankingController@destroy', $ranking->id)}}" method="post">
+                  <form action="{{action('RankingSG.destroy', $ranking->id)}}" method="post">
                    {{csrf_field()}}
                    <input name="_method" type="hidden" value="DELETE">
 
@@ -46,6 +46,11 @@
         </div>
       </div>
       <!--{{ $rankings->links() }}-->
+      <div class="pull-left">
+        <div class="btn-group">
+          <a href="{{ route('ThematicSG.store') }}" class="btn btn-info" >Volver</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
