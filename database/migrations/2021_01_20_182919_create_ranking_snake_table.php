@@ -15,6 +15,7 @@ class CreateRankingSnakeTable extends Migration
     {
         Schema::create('ranking_snake', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->integer('score');
             $table->date('date');
             $table->string('mode');

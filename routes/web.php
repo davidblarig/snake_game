@@ -22,11 +22,11 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/menuSG', [MenuSGController::class, 'index'])->name('ThematicSG.menu');
 
 //Thematics//
-Route::resource('/thematicSG', 'ThematicSGController@index')->name('ThematicSG.index');
+Route::get('/thematicSG', 'ThematicSGController@index')->name('ThematicSG.index');
 Route::get('/thematicSG/create', 'ThematicSGController@create')->name('ThematicSG.create');
-Route::get('/thematicSG/{id}/edit', 'ThematicSGController@edit')->name('ThematicSG.edit');
 Route::post('/thematicSG/store', 'ThematicSGController@store')->name('ThematicSG.store');
-Route::put('thematicSG/{id}', 'ThematicSGCotroller@update')->name('ThematicSG.update');
+Route::get('/thematicSG/{id}/edit', 'ThematicSGController@edit')->name('ThematicSG.edit');
+Route::put('thematicSG/{id}', 'ThematicSGController@update')->name('ThematicSG.update');
 Route::delete('/thematic/{id}/delete', 'ThematicSGController@destroy')->name('ThematicSG.destroy');
 
 //Ranking//
