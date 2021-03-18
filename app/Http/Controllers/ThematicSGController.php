@@ -66,20 +66,7 @@ class ThematicSGController extends Controller
      */
     public function show($id)
     {
-        $thematicsList=ThematicSG::all();
-        if($thematicsList->count())
-        foreach($thematicsList as $thematic){
-            $bg = $thematic->background;
-            $arr_bg[] = $bg;
-        };
-
-        $str_bg = implode(',', $arr_bg);
-
-        return view('SG/menu', [
-            'title' => 'Snake Game',
-            'thematicsList'=>$thematicsList,
-            'bg'=>$str_bg
-        ]);
+        //
     }
 
     /**
@@ -107,16 +94,25 @@ class ThematicSGController extends Controller
 
         ThematicSG::find($id)->update($request->all());
         return redirect()->route('thematic.index')->with('success','Registro actualizado satisfactoriamente');*/
-
-        $thematic = ThematicSG::find($r->$id);
+        $thematic = ThematicSG::find($id);
+        
+        if($r->hasFile('background')){
+            $file = $r->file('background');
+            $name_bg = $file->getClientOriginalName();
+            $file->move(public_path().'/images/imagesSG', $name_bg);
+        }
+        
+        
         $thematic->type = $r->type;
         $thematic->name = $r->name;
         $thematic->description = $r->description;
-        $thematic->background = $r->background;
+        if ($r->hasFile('background')) {
+                $thematic->background = $name_bg;
+        }
         $thematic->snake_color = $r->snake_color;
         $thematic->save();
         return redirect()->route('ThematicSG.index');
-    }
+   }
 
     /**
      * Remove the specified resource from storage.

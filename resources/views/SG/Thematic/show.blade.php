@@ -27,16 +27,17 @@
                 <td>{{$thematic->type}}</td>
                 <td>{{$thematic->name}}</td>
                 <td>{{$thematic->description}}</td>
-                <td><img src="images/imagesSG/{{$thematic -> background}}" width="150px" height="100px"></td>
+                <td><img src="images/imagesSG/{{$thematic->background}}" width="150px" height="100px"></td>
                 <td>{{$thematic->snake_color}}</td>
-                <!--<td><a class="btn btn-primary btn-xs" href="{{action('ThematicSG.edit', $thematic->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
+                <td><a class="btn btn-primary btn-xs" href="{{route('ThematicSG.edit', $thematic->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
                 <td>
-                  <form action="{{action('ThematicSG.destroy', $thematic->id)}}" method="post">
+                  <form action="{{route('ThematicSG.destroy', $thematic->id)}}" method="post">
                    {{csrf_field()}}
                    <input name="_method" type="hidden" value="DELETE">
 
                    <button class="btn btn-danger btn-xs" type="submit"><span class="glyphicon glyphicon-trash"></span></button>
-                </td>-->
+                   </form>
+                </td>
                </tr>
                @endforeach 
                @else

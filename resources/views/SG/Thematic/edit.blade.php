@@ -25,9 +25,9 @@
 				</div>
 				<div class="panel-body">					
 					<div class="table-container">
-						<form method="POST" action="{{ route('ThematicSG.update',$thematic->id) }}"  role="form">
+						<form method="POST" action="{{ route('ThematicSG.update',$thematic->id) }}"  role="form" enctype="multipart/form-data">
 							{{ csrf_field() }}
-							<input name="_method" type="hidden" value="PATCH">
+							<input name="_method" type="hidden" value="PUT">
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
@@ -47,8 +47,9 @@
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="text" name="background" id="background" class="form-control input-sm" value="{{$thematic->background}}">
+										<input type="file" name="background" id="background" class="form-control input-sm" >
 									</div>
+									<img src="{{ url('images/imagesSG/'.$thematic->background) }}" width='100px'>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
@@ -61,7 +62,7 @@
 
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<input type="submit"  value="Actualizar" class="btn btn-success btn-block">
-									<a href="{{ route('ThematicSG.store') }}" class="btn btn-info btn-block" >Atrás</a>
+									<a href="{{ route('ThematicSG.index') }}" class="btn btn-info btn-block" >Atrás</a>
 								</div>	
 
 							</div>
