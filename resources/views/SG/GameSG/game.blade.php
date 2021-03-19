@@ -55,7 +55,7 @@
         </div>
         <div class="contenedor"><canvas id="snakeboard" class="image" width="400" height="400"></canvas></div>
         <h2 id="fin"></h2>
-        <p id="bg-list" style="visibility:hidden">{{$bg}}</p>
+        <p id="bg-list" style="visibility:hidden">{{$background}}</p>
     </body>
 
 </html>

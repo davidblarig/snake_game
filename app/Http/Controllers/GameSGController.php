@@ -10,8 +10,7 @@ class MenuSGController extends Controller
 
     public function index()
     {
-        //
-        $thematicsList=ThematicSG::all();
+        /*$thematicsList=ThematicSG::all();
         if($thematicsList->count())
         foreach($thematicsList as $thematic){
             $bg = $thematic->background;
@@ -24,7 +23,18 @@ class MenuSGController extends Controller
             'title' => 'Snake Game',
             'thematicsList'=>$thematicsList,
             'bg'=>$str_bg
-        ]);
+        ]);*/
+
+        return view('SG/GameSG/game');
+    }
+
+    public function show($id)
+    {
+        $thematics = ThematicSG::find($id);
+        $data['title'] = 'Snake Game';
+        $data['background'] = $thematics->background;
+
+        return view('SG/GameSG/game',$data);
     }
 
 }

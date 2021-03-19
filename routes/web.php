@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-//Route::get('/menuSG', [MenuSGController::class, 'index'])->name('ThematicSG.menu');
+Route::get('/gameSG/{id}', 'GameSGController@show')->name('GameSG.show');
 
 //Thematics//
 Route::get('/thematicSG', 'ThematicSGController@index')->name('ThematicSG.index');
