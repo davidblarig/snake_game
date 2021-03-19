@@ -48,13 +48,13 @@
             </tbody>
 
           </table>
-        </div>
-      </div>
-      <div class="pull-left">
+          <div class="pull-left">
             <div class="btn-group">
-              <a href="{{ route('ThematicSG.store') }}" class="btn btn-info" >Volver</a>
+              <a href="{{ route('GameSG.index') }}" class="btn btn-info" >Volver</a>
             </div>
           </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

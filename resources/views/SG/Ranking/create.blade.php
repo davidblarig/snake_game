@@ -30,17 +30,22 @@
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="text" name="score" id="score" class="form-control input-sm" placeholder="Puntuación">
+										<input type="text" name="name" id="name" class="form-control input-sm" placeholder="Nombre">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="date" name="date" id="date" class="form-control input-sm" placeholder="Fecha">
+										<input type="text" name="score" id="score" class="form-control input-sm" placeholder="Puntuación">
 									</div>
 								</div>
 							</div>
 
 							<div class="row">
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<div class="form-group">
+										<input type="date" name="date" id="date" class="form-control input-sm" placeholder="Fecha">
+									</div>
+								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
 										<input type="text" name="mode" id="mode" class="form-control input-sm" placeholder="Modo">
@@ -52,7 +57,7 @@
 
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<input type="submit"  value="Guardar" class="btn btn-success btn-block">
-									<a href="{{ route('RankingSG.store') }}" class="btn btn-info btn-block" >Atrás</a>
+									<a href="{{ route('RankingSG.index') }}" class="btn btn-info btn-block" >Atrás</a>
 								</div>	
 
 							</div>

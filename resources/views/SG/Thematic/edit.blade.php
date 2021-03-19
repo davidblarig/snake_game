@@ -48,8 +48,8 @@
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
 										<input type="file" name="background" id="background" class="form-control input-sm" >
+										<img src="{{ url('images/imagesSG/'.$thematic->background) }}" width='100px'>
 									</div>
-									<img src="{{ url('images/imagesSG/'.$thematic->background) }}" width='100px'>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">

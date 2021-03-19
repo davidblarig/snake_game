@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ThematicSG;
 
-class MenuSGController extends Controller
+class GameSGController extends Controller
 {
 
     public function index()
     {
-        /*$thematicsList=ThematicSG::all();
+        $thematicsList=ThematicSG::all();
         if($thematicsList->count())
         foreach($thematicsList as $thematic){
             $bg = $thematic->background;
@@ -19,13 +19,11 @@ class MenuSGController extends Controller
 
         $str_bg = implode(',', $arr_bg);
 
-        return view('SG/menu', [
+        return view('SG/GameSG/game', [
             'title' => 'Snake Game',
             'thematicsList'=>$thematicsList,
-            'bg'=>$str_bg
-        ]);*/
-
-        return view('SG/GameSG/game');
+            'background'=>$str_bg
+        ]);
     }
 
     public function show($id)

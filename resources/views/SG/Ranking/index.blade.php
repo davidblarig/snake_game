@@ -14,14 +14,16 @@
           <div class="table-container">
             <table id="mytable" class="table table-bordred table-striped">
              <thead>
-               <th>Puntuación</th>
-               <th>Fecha</th>
-               <th>Modo</th>
+                <th>Nombre</th>
+                <th>Puntuación</th>
+                <th>Fecha</th>
+                <th>Modo</th>
              </thead>
              <tbody>
-              @if($rankings->count())  
-              @foreach($rankings as $ranking)  
+              @if($rankingList->count())  
+              @foreach($rankingList as $ranking)  
               <tr>
+                <td>{{$ranking->name}}</td>
                 <td>{{$ranking->score}}</td>
                 <td>{{$ranking->date}}</td>
                 <td>{{$ranking->mode}}</td>
@@ -32,6 +34,7 @@
                    <input name="_method" type="hidden" value="DELETE">
 
                    <button class="btn btn-danger btn-xs" type="submit"><span class="glyphicon glyphicon-trash"></span></button>
+                  </form>
                  </td>
                </tr>
                @endforeach 
@@ -43,14 +46,14 @@
             </tbody>
 
           </table>
+          <div class="pull-left">
+            <div class="btn-group">
+              <a href="{{ route('GameSG.index') }}" class="btn btn-info" >Volver</a>
+            </div>
+          </div>
         </div>
       </div>
-      <!--{{ $rankings->links() }}-->
-      <div class="pull-left">
-        <div class="btn-group">
-          <a href="{{ route('ThematicSG.store') }}" class="btn btn-info" >Volver</a>
-        </div>
-      </div>
+      {{ $rankingList->links() }}
     </div>
   </div>
 </section>

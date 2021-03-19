@@ -17,7 +17,7 @@ class ThematicSGController extends Controller
         //
         $thematicsList=ThematicSG::all();
 
-        return view('SG/Thematic/show', ['thematicsList'=>$thematicsList]);
+        return view('SG/Thematic/index', ['thematicsList'=>$thematicsList]);
     }
 
     /**
@@ -38,9 +38,6 @@ class ThematicSGController extends Controller
      */
     public function store(Request $r)
     {
-        /*$this->validate($r,['type'=>'required','name'=>'required','description'=>'required','background'=>'required','snake_color'=>'required']);
-        ThematicSG::create($r->all());
-        return redirect()->route('thematic.index')->with('success','Registro creado satisfactoriamente');*/
 
         if($r->hasFile('background')){
             $file = $r->file('background');

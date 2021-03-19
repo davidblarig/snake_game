@@ -18,7 +18,7 @@ class CreateRankingSnakeTable extends Migration
             $table->string('name');
             $table->integer('score');
             $table->date('date');
-            $table->string('mode');
+            $table->integer('mode');
             $table->timestamps();
         });
     }

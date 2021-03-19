@@ -31,17 +31,22 @@
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="text" name="score" id="score" class="form-control input-sm" value="{{$ranking->score}}">
+										<input type="text" name="name" id="name" class="form-control input-sm" value="{{$ranking->name}}">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="date" name="date" id="date" class="form-control input-sm" value="{{$ranking->date}}">
+										<input type="text" name="score" id="score" class="form-control input-sm" value="{{$ranking->score}}">
 									</div>
 								</div>
 							</div>
 
 							<div class="row">
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<div class="form-group">
+										<input type="date" name="date" id="date" class="form-control input-sm" value="{{$ranking->date}}">
+									</div>
+								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
 										<input type="text" name="mode" id="mode" class="form-control input-sm" value="{{$ranking->mode}}">

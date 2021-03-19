@@ -15,9 +15,9 @@ class RankingSGController extends Controller
     public function index()
     {
         //
-        $rankings=RankingSG::orderBy('score','DESC')->paginate(10);
-        //$rankings=RankingSG::all();
-        return view('SG/Ranking/index', ['rankings'=>$rankings]);
+        $rankingList=RankingSG::orderBy('score','DESC')->paginate(10);
+        
+        return view('SG/Ranking/index', ['rankingList'=>$rankingList]);
     }
 
     /**
@@ -37,12 +37,15 @@ class RankingSGController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $r)
     {
-        //
-        $this->validate($request,['score'=>'required','date'=>'required','mode'=>'required']);
-        RankingSG::create($request->all());
-        return redirect()->route('ranking.index')->with('success','Registro creado satisfactoriamente');
+        $ranking = new RankingSG();
+        $ranking->name = $r->name;
+        $ranking->score = $r->score;
+        $ranking->date = $r->date;
+        $ranking->mode = $r->mode;
+        $ranking->save();
+        return redirect()->route('RankingSG.index');
     }
 
     /**
@@ -53,8 +56,7 @@ class RankingSGController extends Controller
      */
     public function show($id)
     {
-        $rankings=RankingSG::find($id);
-        return view('ranking.show',compact('rankings'));
+        //
     }
 
     /**
@@ -67,7 +69,7 @@ class RankingSGController extends Controller
     {
         //
         $ranking=RankingSG::find($id);
-        return view('SG/Ranking/edit',compact('ranking'));
+        return view('SG/Ranking/edit', array('ranking'=>$ranking));
     }
 
     /**
@@ -77,13 +79,15 @@ class RankingSGController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $r, $id)
     {
-        //
-        $this->validate($request,['score'=>'required','date'=>'required','mode'=>'required']);
-
-        RankingSG::find($id)->update($request->all());
-        return redirect()->route('ranking.index')->with('success','Registro actualizado satisfactoriamente');
+        $ranking = RankingSG::find($id);
+        $ranking->name = $r->name;
+        $ranking->score = $r->score;
+        $ranking->date = $r->date;
+        $ranking->mode = $r->mode;
+        $ranking->save();
+        return redirect()->route('RankingSG.index');
     }
 
     /**
@@ -94,8 +98,8 @@ class RankingSGController extends Controller
      */
     public function destroy($id)
     {
-        //
-        RankingSG::find($id)->delete();
-        return redirect()->route('RankingSG.index')->with('success','Registro eliminado satisfactoriamente');
+        $ranking = RankingSG::find($id);
+        $ranking->delete();
+        return redirect()->route('RankingSG.index');
     }
 }
