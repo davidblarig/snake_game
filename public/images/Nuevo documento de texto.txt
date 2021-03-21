@@ -1,2 +1,0 @@
-#micapa{backround:url("")}
-document.getElemntbyid(micaap).css.bacground="{{url('images/imagesSG/$ruta')}}"

@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>Snake Game</title>
         <link href="https://fonts.googleapis.com/css?family=Antic+Slab" rel="stylesheet">
-        <link rel="stylesheet" href="{!! asset('css/estilos.css') !!}">
+        <link rel="stylesheet" href="{!! asset('css/estilosSG.css') !!}">
         <script type="text/javascript" src="{!! asset('js/api.js') !!}" async></script>
     </head>
     <body>
