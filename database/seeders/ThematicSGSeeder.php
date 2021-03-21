@@ -20,7 +20,7 @@ class ThematicSeeder extends Seeder
             'name' => 'Normal',
             'description' => 'Nivel inicial',
             'background' => 'theme1.jpg',
-            'snake_color' => 'green'
+            'snake_color' => 'Verde'
         ]);
   
         DB::table('thematics_snake')->insert([
@@ -29,7 +29,7 @@ class ThematicSeeder extends Seeder
             'name' => 'Desierto',
             'description' => 'Mundo del desierto',
             'background' => 'desert.png',
-            'snake_color' => 'red'
+            'snake_color' => 'Rojo'
         ]);
         DB::table('thematics_snake')->insert([
             'id' => '3',
@@ -37,7 +37,7 @@ class ThematicSeeder extends Seeder
             'name' => 'Almería',
             'description' => 'Mapa de Almería',
             'background' => 'almeria.jpg',
-            'snake_color' => 'green'
+            'snake_color' => 'Azul'
         ]);
       
     }

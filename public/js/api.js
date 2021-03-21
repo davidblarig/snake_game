@@ -57,27 +57,68 @@ function main() {
     game();
 }
 
+var id_list = document.getElementById('id-list').innerHTML;
+var id_arr = id_list.split(",");
+
+var nm_list = document.getElementById('nm-list').innerHTML;
+var nm_arr = nm_list.split(",");
+
+
+function addThematics() {
+    var sel = document.getElementById("tematica");
+
+    for(var i=2; i<=id_arr.length; i++){
+        var opt = document.createElement("option");
+        opt.value = id_arr[i-1];
+        opt.text = nm_arr[i-1];
+        sel.add(opt);
+    }
+}
+
+window.onload = addThematics;
+
+var fecha = new Date();
+
+function currentDate(fecha) {
+    var anyo = fecha.getFullYear();
+    var mes = fecha.getMonth() + 1; 
+    var dia = fecha.getDate();
+
+    if(mes < 10) mes = '0' + mes;
+    if(dia < 10) dia = '0' + dia;
+
+    return fecha = anyo + '-' + mes + '-' + dia;
+}
+
+var modo;
+var route = '"RankingSG.store"'; 
+
 // función game llamada repetidamente para mantener el juego en marcha
 function game() {
     if (has_game_ended()){
         totalTime = 0;
         velocidad = 1000000;
+        modo = document.getElementById('modo').value;
         snakeboard_ctx.font = "48px impact";
         snakeboard_ctx.fillStyle = "black";
         snakeboard_ctx.textAlign = "center";
         snakeboard_ctx.fillText("Game Over", snakeboard.width/2, snakeboard.height/2);
         document.getElementById('reload').innerHTML = "Reiniciar&emsp;&emsp;";
         document.getElementById('reload').addEventListener("click", restart);
+        document.getElementById('form-end').innerHTML = "<div class='info' id='reload'>FIN DEL JUEGO</div><div class='info'>Introduce tus iniciales</div><input type='text' maxlength='3' name='name' autocomplete='off'><input type='hidden' name='score' id='score' value='" + score + "'><input type='hidden' name='date' id='date' value='" + currentDate(fecha) + "'><input type='hidden' name='mode' id='mode' value='" + modo + "'><input type='submit'  value='Guardar'>";
+        document.getElementById('reload').addEventListener("click", restart);
     } 
-    
+    //console.log(board_background.src == '');
     changing_direction = false;
     setTimeout(function onTick() {
-        clear_board();
-        drawFood();
-        move_snake();
-        drawSnake();
-        // Repetir
-        game();
+        if(board_background.src != '') {
+            clear_board();
+            drawFood();
+            move_snake();
+            drawSnake();
+            // Repetir
+            game();
+        }
     }, velocidad)
 }
 
@@ -85,11 +126,13 @@ function setScore() {
     document.getElementById('score').innerHTML = "Puntuación: " + score;
 }
 
+
 function mode() {
-    if(document.getElementById('modo').value == "val2") {
+    if(document.getElementById('modo').value == "2") {
         updateClock();
     }
 }
+
 
 function difficulty() {
     if(document.getElementById('dificultad').value == "fac") {
@@ -109,7 +152,7 @@ var bg_imgs = bg_list.split(",");
 
 var sc_list = document.getElementById('sc-list').innerHTML;
 var sc_colors = sc_list.split(",");
-
+console.log(bg_imgs);
 function thematic() {
     for(var i=1; i<=bg_imgs.length; i++){
         if(document.getElementById('tematica').value == i){

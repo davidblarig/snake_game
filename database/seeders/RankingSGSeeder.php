@@ -24,7 +24,7 @@ class RankingSGSeeder extends Seeder
   
         DB::table('ranking_snake')->insert([
             'id' => '2',
-            'name'=> 'DBR',
+            'name'=> 'BBB',
             'score' => '1000',
             'date' => '2021/01/24',
             'mode' => '1',
@@ -32,7 +32,7 @@ class RankingSGSeeder extends Seeder
   
         DB::table('ranking_snake')->insert([
             'id' => '3',
-            'name'=> 'JBG',
+            'name'=> 'CCC',
             'score' => '850',
             'date' => '2021/03/15',
             'mode' => '2',
