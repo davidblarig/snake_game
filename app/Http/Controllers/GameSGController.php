@@ -15,14 +15,19 @@ class GameSGController extends Controller
         foreach($thematicsList as $thematic){
             $bg = $thematic->background;
             $arr_bg[] = $bg;
+
+            $col = $thematic->snake_color;
+            $arr_col[] = $col;
         };
 
         $str_bg = implode(',', $arr_bg);
+        $str_col = implode(',', $arr_col);
 
         return view('SG/GameSG/game', [
             'title' => 'Snake Game',
             'thematicsList'=>$thematicsList,
-            'background'=>$str_bg
+            'background'=>$str_bg,
+            'snake_color'=>$str_col
         ]);
     }
 

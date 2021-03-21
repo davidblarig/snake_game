@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 
-Route::get('/gameSG', 'GameSGController@index')->name('GameSG.index');
-Route::get('/gameSG/{id}', 'GameSGController@show')->name('GameSG.show');
+Route::get('/snake_game', 'GameSGController@index')->name('GameSG.index');
+Route::get('/snake_game/{id}', 'GameSGController@show')->name('GameSG.show');
 
 //Thematics//
 Route::get('/thematicSG', 'ThematicSGController@index')->name('ThematicSG.index');

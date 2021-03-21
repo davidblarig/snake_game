@@ -50,8 +50,13 @@
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
-									<div class="form-group">
-										<input type="text" name="snake_color" id="snake_color" class="form-control input-sm" placeholder="Color de la serpiente">
+									<div class="form-group form-control input-sm">
+										<label for="snake_color">Color de la serpiente:</label>
+										<select name="snake_color" id="snake_color">
+											<option value="Verde">Verde</option>
+											<option value="Rojo">Rojo</option>
+											<option value="Azul">Azul</option>
+										</select>
 									</div>
 								</div>
 							</div>

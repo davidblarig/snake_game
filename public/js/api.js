@@ -38,13 +38,9 @@ var height = snakeboard.height;
 var url_imgs = "../../images/imagesSG/";
 
 var head_img = new Image();
-head_img.src = url_imgs + "head.png";
 var body_img = new Image();
-body_img.src = url_imgs + "body.png";
 var body2_img = new Image();
-body2_img.src = url_imgs + "body2.png";
 var tail_img = new Image();
-tail_img.src = url_imgs + "tail.png";
 
 var food_img = new Image();
 food_img.src = url_imgs + "apple.png";
@@ -65,7 +61,7 @@ function main() {
 function game() {
     if (has_game_ended()){
         totalTime = 0;
-        velocidad = 100000;
+        velocidad = 1000000;
         snakeboard_ctx.font = "48px impact";
         snakeboard_ctx.fillStyle = "black";
         snakeboard_ctx.textAlign = "center";
@@ -111,13 +107,19 @@ function difficulty() {
 var bg_list = document.getElementById('bg-list').innerHTML;
 var bg_imgs = bg_list.split(",");
 
+var sc_list = document.getElementById('sc-list').innerHTML;
+var sc_colors = sc_list.split(",");
+
 function thematic() {
     for(var i=1; i<=bg_imgs.length; i++){
         if(document.getElementById('tematica').value == i){
             board_background.src = url_imgs + bg_imgs[i-1];
+            head_img.src = url_imgs + sc_colors[i-1] + "head.png";
+            body_img.src = url_imgs + sc_colors[i-1] + "body.png";
+            body2_img.src = url_imgs + sc_colors[i-1] + "body2.png";
+            tail_img.src = url_imgs + sc_colors[i-1] + "tail.png";
         }
-        
-        console.log(document.getElementById('tematica').value);
+
     }
 }
 
